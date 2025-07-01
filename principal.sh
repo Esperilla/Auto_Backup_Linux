@@ -422,9 +422,9 @@ process_usb_backup() {
     mensaje_exito "Proceso de respaldo completado para $sysadmin_id"
 }
 
-#===============================================================================
-# MONITOR DE DISPOSITIVOS USB
-#===============================================================================
+#=============================#
+# MONITOR DE DISPOSITIVOS USB #
+#=============================#
 
 monitor_usb() {
     mensaje_info "Iniciando monitor de dispositivos USB..."
@@ -443,9 +443,9 @@ monitor_usb() {
     done
 }
 
-#===============================================================================
-# FUNCIONES DE CONFIGURACIÓN
-#===============================================================================
+#============================#
+# FUNCIONES DE CONFIGURACIÓN #
+#============================#
 
 setup_initial_config() {
     mensaje_info "Configurando sistema inicial..."
@@ -487,9 +487,9 @@ EOF
     mensaje_exito "Configuración inicial completada"
 }
 
-#===============================================================================
-# FUNCIONES DE UTILIDADES ADMINISTRATIVAS
-#===============================================================================
+#=========================================#
+# FUNCIONES DE UTILIDADES ADMINISTRATIVAS #
+#=========================================#
 
 add_sysadmin_key() {
     local public_key_file="$1"
@@ -561,9 +561,9 @@ mostrar_ayuda(){
     echo "  $TELEGRAM_CONFIG    # Configuración de Telegram"
 }
 
-#===============================================================================
-# FUNCIÓN PRINCIPAL
-#===============================================================================
+#===================#
+# FUNCIÓN PRINCIPAL #
+#===================#
 
 main() {
     # Verificar que se ejecute como root
