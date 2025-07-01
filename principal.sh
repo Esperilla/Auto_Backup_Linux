@@ -1,15 +1,15 @@
 #!/bin/bash
 
-#===============================================================================
-# SISTEMA DE RESPALDO AUTOMÁTICO CON AUTENTICACIÓN Y NOTIFICACIONES
-# Proyecto Final - Programación en Administración de Servicios
-# Autores: Emmanuel Alexis Esperilla Castro y Erick Jair Morales Romero
-# Fecha: 19 de junio de 2025
-#===============================================================================
+#===================================================================#
+# SISTEMA DE RESPALDO AUTOMÁTICO CON AUTENTICACIÓN Y NOTIFICACIONES #
+#===================================================================#
+
+source "${0%/*}"/backup_mensajes.sh
 
 # Configuración global
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="/etc/backup-system"
+LOG_DIR="/var/log/backup-system"
 TEMP_DIR="/tmp/backup-system"
 USB_MOUNT_BASE="/media"
 
@@ -19,13 +19,9 @@ SYSADMIN_KEYS="$CONFIG_DIR/authorized_keys"
 SERVER_HASH="$CONFIG_DIR/server_hash"
 TELEGRAM_CONFIG="$CONFIG_DIR/telegram.conf"
 
-#===============================================================================
-# FUNCIONES DE UTILIDAD
-#===============================================================================
-source "${0%/*}"/backup_mensajes.sh
-#===============================================================================
-# FUNCIONES DE CONFIGURACIÓN
-#===============================================================================
+#----------------------------#
+# FUNCIONES DE CONFIGURACIÓN #
+#----------------------------#
 
 verificar_dependencias() {
     local deps=("openssl" "tar" "gzip" "curl" "udevadm" "mount" "umount")
@@ -55,9 +51,9 @@ crear_directorios() {
     done
 }
 
-#===============================================================================
-# FUNCIONES DE AUTENTICACIÓN
-#===============================================================================
+#----------------------------#
+# FUNCIONES DE AUTENTICACIÓN #
+#----------------------------#
 
 verificar_firma_digital() {
     local usb_path="$1"
@@ -127,9 +123,9 @@ get_sysadmin_id() {
     fi
 }
 
-#===============================================================================
-# FUNCIONES DE TELEGRAM
-#===============================================================================
+#-----------------------#
+# FUNCIONES DE TELEGRAM #
+#-----------------------#
 
 load_telegram_config() {
  # El archivo debe existir
@@ -243,9 +239,6 @@ esperar_contraseña() {
     return 1
 }
 
-
-
-
 verificar_contrasena_servidor() {
     local provided_password="$1"
     # Verificar que se proporcione una contraseña
@@ -281,9 +274,9 @@ verificar_contrasena_servidor() {
     fi
 }
 
-#===============================================================================
-# FUNCIONES DE RESPALDO
-#===============================================================================
+#-----------------------#
+# FUNCIONES DE RESPALDO #
+#-----------------------#
 
 read_backup_config() {
     local usb_path="$1"
@@ -308,6 +301,7 @@ crear_backup() {
     local server_password="$3"
     local timestamp=$(date '+%Y%m%d_%H%M%S')
     local sysadmin_id=$(get_sysadmin_id "$usb_path")
+
     mensaje_info "Iniciando proceso de respaldo..."
     
     for dir in $backup_dirs; do
@@ -340,9 +334,9 @@ crear_backup() {
     mensaje_exito "Proceso de respaldo finalizado"
 }
 
-#===============================================================================
-# FUNCIÓN PRINCIPAL DE RESPALDO
-#===============================================================================
+#-------------------------------#
+# FUNCIÓN PRINCIPAL DE RESPALDO #
+#-------------------------------#
 
 process_usb_backup() {
     local usb_device="$1"

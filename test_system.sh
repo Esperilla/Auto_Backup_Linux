@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#===============================================================================
-# SCRIPT DE PRUEBAS PARA SISTEMA DE RESPALDO AUTOMÁTICO
-#===============================================================================
+#=======================================================#
+# SCRIPT DE PRUEBAS PARA SISTEMA DE RESPALDO AUTOMÁTICO #
+#=======================================================#
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${0%/*}"/backup_mensajes.sh

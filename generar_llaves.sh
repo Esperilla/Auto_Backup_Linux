@@ -4,8 +4,8 @@
 # GENERADOR DE LLAVES PARA EL SISTEMA #
 #=====================================#
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${0%/*}"/backup_mensajes.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 generate_sysadmin_keys() {
     local sysadmin_id="$1"

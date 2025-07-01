@@ -4,8 +4,8 @@
 # INSTALADOR DEL SISTEMA #
 #========================#
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${0%/*}"/backup_mensajes.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 verificar_root() {
     if [ "$EUID" -ne 0 ]; then
@@ -37,7 +37,7 @@ setup_permisos() {
     chmod +x "$SCRIPT_DIR/principal.sh"
     chmod +x "$SCRIPT_DIR/generar_llaves.sh"
     chmod +x "$SCRIPT_DIR/setup_telegram.sh"
-    chmod +x "$SCRIPT_DIR/backup-background.sh"
+    chmod +x "$SCRIPT_DIR/backup-usb-handler.sh"
     
     mensaje_exito "Permisos configurados"
 }
@@ -49,7 +49,7 @@ crear_symlinks() {
     ln -sf "$SCRIPT_DIR/principal.sh" /usr/local/bin/backup-system
     ln -sf "$SCRIPT_DIR/generar_llaves.sh" /usr/local/bin/backup-genkeys
     ln -sf "$SCRIPT_DIR/setup_telegram.sh" /usr/local/bin/backup-telegram
-    ln -sf "$SCRIPT_DIR/backup-usb-handler.sh" /usr/local/bin/backup-background
+    ln -sf "$SCRIPT_DIR/backup-usb-handler.sh" /usr/local/bin/backup-usb-handler
     
     mensaje_exito "Enlaces simbólicos creados en /usr/local/bin/"
 }
@@ -123,7 +123,7 @@ desinstalar_sistema() {
         rm -f /usr/local/bin/backup-system
         rm -f /usr/local/bin/backup-genkeys
         rm -f /usr/local/bin/backup-telegram
-        rm -f /usr/local/bin/backup-background
+        rm -f /usr/local/bin/backup-usb-handler
         rm -f /usr/local/bin/backup_mensajes.sh
         
         # Preguntar si eliminar configuración
@@ -132,6 +132,7 @@ desinstalar_sistema() {
         
         if [[ "$response2" =~ ^[Yy]$ ]]; then
             rm -rf /etc/backup-system
+            rm -rf /var/log/backup-system
             mensaje_exito "Configuración eliminada"
         fi
         
