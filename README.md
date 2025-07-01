@@ -12,20 +12,22 @@ Sistema completo de respaldo automático para servidores mediante dispositivos U
 - ✅ **Compresión automática** con gzip
 - ✅ **Detección automática** con regla udev
 - ✅ **Servicio systemd** para ejecución continua
+- ✅ **Logs detallados** de auditoría
 
 ### 📁 Estructura del Proyecto
 ```
 Proyecto_Admon_Servicios/
+├── README.md                 # Documentación
 ├── install.sh                # Instalador automático
-├── backup-mensajes.sh        # Script de mensajes del sistema
 ├── principal.sh              # Script principal del sistema
 ├── generar_llaves.sh         # Generador de llaves RSA
 ├── setup_telegram.sh         # Configurador de Telegram
-├── backup-background.sh      # Manejador de eventos USB
+├── backup-usb-handler.sh     # Manejador de eventos USB
 ├── backup-system.service     # Servicio systemd
 ├── backup_config.conf        # Configuración para USB
 ├── 99-backup-usb.rules       # Regla udev para USB
-└── README.md                 # Documentación
+├── test_system.sh            # Script de pruebas
+└── backup-mensajes.sh        # Script de mensajes del sistema
 ```
 
 ### 🔧 Instalación
@@ -33,7 +35,7 @@ Proyecto_Admon_Servicios/
 #### 1. Clonar o descargar el proyecto
 ```bash
 git clone <repositorio>
-cd Proyecto_Final_Admon_Servicios
+cd Auto_Backup_Linux
 chmod +x ./install.sh
 ```
 
@@ -125,6 +127,20 @@ sudo backup-system --add-key /path/public.pem
 6. Crea respaldos cifrados y comprimidos
 7. Notifica finalización vía Telegram
 
+### 🔍 Pruebas
+
+#### Ejecutar suite de pruebas:
+```bash
+chmod +x test_system.sh
+./test_system.sh
+```
+
+#### Verificar instalación:
+```bash
+sudo backup-system --status
+systemctl status backup-system.service
+```
+
 ### 📂 Ubicación de Archivos
 
 #### Configuración:
@@ -170,9 +186,7 @@ sudo backup-telegram --test
 - **Dependencias**: openssl, curl, tar, gzip, udev, systemd
 - **Red**: Acceso a internet para Telegram
 
-### 👥 Autores
-**Erick Jair Morales Romero**
-
+### 👥 Autor
 **Emmanuel Alexis Esperilla Castro** 
 
 ### 📄 Licencia

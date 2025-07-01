@@ -2,6 +2,6 @@
 # REGLA UDEV PARA DETECCIÓN AUTOMÁTICA DE DISPOSITIVOS USB DE RESPALDO #
 #======================================================================#
 
-SUBSYSTEM=="block", KERNEL=="sd[a-z][0-9]", ENV{ID_BUS}=="usb", ENV{ID_FS_TYPE}!="", ACTION=="add", RUN+="/usr/local/bin/backup-background %k"
+SUBSYSTEM=="block", KERNEL=="sd[a-z][0-9]", ENV{ID_BUS}=="usb", ENV{ID_FS_TYPE}!="", ACTION=="add", RUN+="/usr/local/bin/backup-usb-handler %k"
 
 # Este archivo debe ubicarse en /etc/udev/rules.d/99-backup-usb.rules
