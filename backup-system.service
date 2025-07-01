@@ -1,0 +1,22 @@
+[Unit]
+Description=Sistema de Respaldo Automático con USB
+Documentation=man:systemd.service(5)
+After=multi-user.target graphical-session.target
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/backup-system --monitor
+Restart=always
+RestartSec=10
+User=root
+Group=root
+StandardOutput=journal
+StandardError=journal
+
+# Variables de entorno
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+[Install]
+WantedBy=multi-user.target
