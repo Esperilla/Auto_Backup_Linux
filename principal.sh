@@ -9,7 +9,7 @@ source "${0%/*}"/backup_mensajes.sh
 # Configuración global
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="/etc/backup-system"
-LOG_DIR="/var/log/backup-system"
+#LOG_DIR="/var/log/backup-system"
 TEMP_DIR="/tmp/backup-system"
 USB_MOUNT_BASE="/media"
 
@@ -41,7 +41,7 @@ verificar_dependencias() {
 }
 
 crear_directorios() {
-    local dirs=("$CONFIG_DIR" "$TEMP_DIR")
+    local dirs=("$CONFIG_DIR" "$LOG_DIR" "$TEMP_DIR")
     
     for dir in "${dirs[@]}"; do
         if [ ! -d "$dir" ]; then
