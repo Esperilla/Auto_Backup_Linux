@@ -37,7 +37,6 @@ setup_permisos() {
     chmod +x "$SCRIPT_DIR/principal.sh"
     chmod +x "$SCRIPT_DIR/generar_llaves.sh"
     chmod +x "$SCRIPT_DIR/setup_telegram.sh"
-    chmod +x "$SCRIPT_DIR/backup-usb-handler.sh"
     
     mensaje_exito "Permisos configurados"
 }
@@ -49,22 +48,8 @@ crear_symlinks() {
     ln -sf "$SCRIPT_DIR/principal.sh" /usr/local/bin/backup-system
     ln -sf "$SCRIPT_DIR/generar_llaves.sh" /usr/local/bin/backup-genkeys
     ln -sf "$SCRIPT_DIR/setup_telegram.sh" /usr/local/bin/backup-telegram
-    ln -sf "$SCRIPT_DIR/backup-usb-handler.sh" /usr/local/bin/backup-usb-handler
     
     mensaje_exito "Enlaces simbólicos creados en /usr/local/bin/"
-}
-
-instalar_reglas_udev() {
-    mensaje_info "Instalando reglas udev..."
-    
-    if [ -f "$SCRIPT_DIR/99-backup-usb.rules" ]; then
-        cp "$SCRIPT_DIR/99-backup-usb.rules" /etc/udev/rules.d/
-        chmod 644 /etc/udev/rules.d/99-backup-usb.rules
-        udevadm control --reload-rules
-        mensaje_exito "Reglas udev instaladas"
-    else
-        mensaje_advertencia "Archivo de reglas udev no encontrado"
-    fi
 }
 
 install_systemd_service() {
@@ -87,7 +72,6 @@ instalar_sistema() {
     instalar_dependencias
     setup_permisos
     crear_symlinks
-    instalar_reglas_udev
     install_systemd_service
     
     # Ejecutar configuración inicial
@@ -123,7 +107,6 @@ desinstalar_sistema() {
         rm -f /usr/local/bin/backup-system
         rm -f /usr/local/bin/backup-genkeys
         rm -f /usr/local/bin/backup-telegram
-        rm -f /usr/local/bin/backup-usb-handler
         rm -f /usr/local/bin/backup_mensajes.sh
         
         # Preguntar si eliminar configuración
