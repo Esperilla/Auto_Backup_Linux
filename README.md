@@ -22,10 +22,8 @@ Proyecto_Admon_Servicios/
 ├── principal.sh              # Script principal del sistema
 ├── generar_llaves.sh         # Generador de llaves RSA
 ├── setup_telegram.sh         # Configurador de Telegram
-├── backup-usb-handler.sh     # Manejador de eventos USB
 ├── backup-system.service     # Servicio systemd
 ├── backup_config.conf        # Configuración para USB
-├── 99-backup-usb.rules       # Regla udev para USB
 ├── test_system.sh            # Script de pruebas
 └── backup-mensajes.sh        # Script de mensajes del sistema
 ```
