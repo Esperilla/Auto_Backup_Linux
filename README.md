@@ -130,7 +130,7 @@ sudo backup-system --add-key /path/public.pem
 sudo backup-system --status
 systemctl status backup-system.service
 ```
-
+```
 ### 📂 Ubicación de Archivos
 
 #### Configuración:
