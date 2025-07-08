@@ -10,13 +10,12 @@ Sistema completo de respaldo automático para servidores mediante dispositivos U
 - ✅ **Notificaciones en tiempo real** vía Telegram
 - ✅ **Cifrado de respaldos** con AES-256-CBC
 - ✅ **Compresión automática** con gzip
-- ✅ **Detección automática** con regla udev
 - ✅ **Servicio systemd** para ejecución continua
 - ✅ **Logs detallados** de auditoría
 
 ### 📁 Estructura del Proyecto
 ```
-Proyecto_Admon_Servicios/
+Auto_Backup_Linux/
 ├── README.md                 # Documentación
 ├── install.sh                # Instalador automático
 ├── principal.sh              # Script principal del sistema
@@ -24,7 +23,6 @@ Proyecto_Admon_Servicios/
 ├── setup_telegram.sh         # Configurador de Telegram
 ├── backup-system.service     # Servicio systemd
 ├── backup_config.conf        # Configuración para USB
-├── test_system.sh            # Script de pruebas
 └── backup-mensajes.sh        # Script de mensajes del sistema
 ```
 
@@ -126,12 +124,6 @@ sudo backup-system --add-key /path/public.pem
 7. Notifica finalización vía Telegram
 
 ### 🔍 Pruebas
-
-#### Ejecutar suite de pruebas:
-```bash
-chmod +x test_system.sh
-./test_system.sh
-```
 
 #### Verificar instalación:
 ```bash
