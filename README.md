@@ -122,6 +122,7 @@ sudo backup-system --add-key /path/public.pem
 5. Valida contraseña del servidor
 6. Crea respaldos cifrados y comprimidos
 7. Notifica finalización vía Telegram
+```
 
 ### 🔍 Pruebas
 
@@ -129,7 +130,6 @@ sudo backup-system --add-key /path/public.pem
 ```bash
 sudo backup-system --status
 systemctl status backup-system.service
-```
 ```
 ### 📂 Ubicación de Archivos
 
